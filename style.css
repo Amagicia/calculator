@@ -19,7 +19,7 @@ body {
   background-color: blanchedalmond;
 }
 .nm {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 555;
   font-family: "Courier New", Courier, monospace;
   position: absolute;
@@ -172,7 +172,7 @@ h2 {
   width: 170px;
 }
 #result {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 400;
   font-style: oblique;
 }
