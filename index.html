@@ -11,10 +11,29 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Check if the device is a phone
+        if (isPhone()) {
+          alert("For Best Experience Use Laptop.");
+          // You can choose to redirect or perform any other action
+        } else {
+          // Your code for laptops or other devices goes here
+          console.log("Code for laptops is running.");
+        }
+      });
+
+      // Function to check if the device is a phone
+      function isPhone() {
+        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+          navigator.userAgent
+        );
+      }
+    </script>
   </head>
   <body>
     <div class="nm">Designed and developed by: Aman Tiwari 27/01/2024</div>
-    <h2>Calculater</h2>
+    <h2>Calculator</h2>
     <div class="contant">
       <div class="main">
         <!-- <input type="text" id="display" readonly /> -->
@@ -23,9 +42,8 @@
           <input
             placeholder="Enter Number"
             id="display"
-            readonly
             class="input-field"
-            type="number"
+            type=""
           />
           <label for="input-field" class="input-label">Enter Number</label>
           <span class="input-highlight"></span>
@@ -41,8 +59,11 @@
           >
             C
           </button>
-          <button class="button-54" role="button" onclick="appendToDisplay('')">
-            E
+          <button class="button-54" id="erase" role="button">
+            <img
+              src="https://cdn.glitch.global/f31c2a66-401a-4464-b54d-410098a16587/delete.png?v=1706633986279"
+              alt="Button Image"
+            />
           </button>
           <button
             class="button-54"
@@ -56,7 +77,7 @@
             role="button"
             onclick="appendToDisplay('*')"
           >
-            *
+            x
           </button>
           <br />
           <button
@@ -177,7 +198,10 @@
         </div>
       </div>
     </div>
-    <audio id="clickSound" src="click-button-140881.mp3"></audio>
+    <audio
+      id="clickSound"
+      src="https://cdn.glitch.global/f31c2a66-401a-4464-b54d-410098a16587/click-button-140881.mp3?v=1706385179643"
+    ></audio>
 
     <!-- <script src="script.js"></script> -->
     <script>
@@ -194,7 +218,9 @@
       function solve() {
         try {
           const result = eval(document.getElementById("display").value);
-          document.getElementById("result").innerHTML = `Answer : ${result}`;
+          document.getElementById("display").value = ` ${result}`;
+
+          // document.getElementById("result").innerHTML = `Answer : ${result}`;
         } catch (error) {
           document.getElementById("result").innerHTML = "Error";
         }
@@ -205,12 +231,25 @@
         var audio = document.getElementById("clickSound");
         audio.play();
       }
-
       // Attach the function to all buttons on the page
       var buttons = document.querySelectorAll("button");
 
       buttons.forEach(function (button) {
         button.addEventListener("click", playSound);
+      });
+
+      const inputField = document.getElementById("display");
+      const eraseButton = document.getElementById("erase");
+
+      eraseButton.addEventListener("click", function () {
+        // Get the current value of the input field
+        let currentValue = inputField.value;
+
+        // Remove the last character from the current value
+        let newValue = currentValue.slice(0, -1);
+
+        // Update the input field with the new value
+        inputField.value = newValue;
       });
     </script>
   </body>
